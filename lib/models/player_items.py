@@ -62,7 +62,7 @@ class Player_Items:
     def save(self):
         sql = """
             INSERT INTO player_items (player_id, item_id)
-            VALUES (?, ?, ?)
+            VALUES (?, ?)
         """
 
         CURSOR.execute(sql, (self.player_id, self.item_id))
@@ -89,3 +89,15 @@ class Player_Items:
 
         CURSOR.execute(sql, (self.id))
         CONN.commit()
+
+        del type(self).all[self.id]
+
+        self.id = None
+    
+    @classmethod
+    def create(cls, player_id, item_id):
+        player_items = cls(player_id, item_id)
+        player_items.save()
+        return player_items
+    
+    
