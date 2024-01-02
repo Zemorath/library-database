@@ -83,7 +83,7 @@ class Player_Items:
     
     def delete(self):
         sql = """
-            DELTE FROM player_item
+            DELTE FROM player_items
             WHERE id = ?
         """
 
@@ -100,4 +100,36 @@ class Player_Items:
         player_items.save()
         return player_items
     
+    @classmethod
+    def instance_from_db(cls, row):
+        instance = cls.all.get(row[0])
+        if instance:
+            instance.player_id = row[1]
+            instance.item_id = row[2]
+        else:
+            instance = cls(row[1], row[2])
+            instance.id = row[0]
+            cls.all[instance.id] = instance
+        return instance
     
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM player_items
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT *
+            FROM player_items
+            WHERE id = ?
+        """
+
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
