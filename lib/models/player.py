@@ -35,5 +35,34 @@ class Player:
             raise ValueError(
                 "player_class must be a non-empty string"
             )
-
     
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS players (
+            id  INTEGER PRIMARY KEY,
+            name TEXT,
+            player_class TEXT
+            )"""
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS players;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+    
+    def save(self):
+        sql = """
+            INSERT INTO players (name, player_class)
+            VALUES (?, ?)
+        """
+        CURSOR.execute(sql, (self.name, self.player_class))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
+        
