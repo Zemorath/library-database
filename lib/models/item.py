@@ -136,5 +136,15 @@ class Item:
         CURSOR.execute(sql, (self.name, self.health, self.defense, self.attack, self.crit_dmg, self.crit_chance, self.speed, self.id))
         CONN.commit()
     
-    
+    def delete(self):
+        sql = """
+            DELETE FROM items
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+
+        self.id = None
     
