@@ -66,3 +66,8 @@ class Player:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
         
+    @classmethod
+    def create(cls, name, player_class):
+        player = cls(name, player_class)
+        player.save()
+        return player
