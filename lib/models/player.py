@@ -92,3 +92,26 @@ class Player:
         del type(self).all[self.id]
 
         self.id = None
+
+    @classmethod
+    def instance_from_db(cls, row):
+        player = cls.all.get(row[0])
+        if player:
+            player.name = row[1]
+            player.player_class = row[2]
+        else:
+            player = cls(row[1, row[2]])
+            player.id = row[0]
+            cls.all[player.id] = player
+        return player
+    
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM players
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
