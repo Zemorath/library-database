@@ -1,10 +1,11 @@
-
+from models.__init__ import CURSOR, CONN
 
 class Item:
 
     all = []
 
-    def __init__(self, name, health, defense, attack, crit_dmg, crit_chance, speed):
+    def __init__(self, name, health, defense, attack, crit_dmg, crit_chance, speed, id = None):
+        self.id = id
         self._name = name
         self._health = health
         self._defense = defense
@@ -84,4 +85,28 @@ class Item:
             if self._speed == speed:
                 self.speed = speed
 
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS items (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            health INTEGER,
+            defense INTEGER,
+            attack INTEGER,
+            crit_dmg INTEGER,
+            crit_chance INTEGER,
+            speed INTEGER
+            )"""
+        
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS items;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
     

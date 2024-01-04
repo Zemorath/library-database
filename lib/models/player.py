@@ -127,7 +127,7 @@ class Player:
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
     
-    def players(self):
+    def player_items(self):
         from models.player_items import Player_Items
         sql = """
             SELECT * FROM player_items
