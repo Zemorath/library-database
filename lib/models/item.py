@@ -187,3 +187,17 @@ class Item:
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
     
+
+    def player_items(self):
+        from models.player_items import Player_Items
+        sql = """
+            SELECT * FROM player_items
+            WHERE item_id = ?
+        """
+        CURSOR.execute(sql, (self.id,),)
+
+        rows = CURSOR.fetchall()
+
+        return [
+            Player_Items.instance_from_db(row) for row in rows
+        ]
