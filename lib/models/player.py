@@ -115,3 +115,27 @@ class Player:
         rows = CURSOR.execute(sql).fetchall()
 
         return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT *
+            FROM players
+            WHERE id = ?
+        """
+
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+    
+    def players(self):
+        from models.player_items import Player_Items
+        sql = """
+            SELECT * FROM player_items
+            WHERE player_id = ?
+        """
+        CURSOR.execute(sql, (self.id,),)
+
+        rows = CURSOR.fetchall()
+        return [
+            Player_Items.instance_from_db(row) for row in rows
+        ]
