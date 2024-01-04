@@ -121,3 +121,20 @@ class Item:
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
     
+    @classmethod
+    def create(cls, name, health, defense, attack, crit_dmg, crit_chance, speed):
+        item = cls(name, health, defense, attack, crit_dmg, crit_chance, speed)
+        item.save()
+        return item
+    
+    def update(self):
+        sql = """
+            UPDATE items
+            SET name = ?, health = ?, defense = ?, attack = ?, crit_dmg = ?, crit_chance = ?, speed = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.health, self.defense, self.attack, self.crit_dmg, self.crit_chance, self.speed, self.id))
+        CONN.commit()
+    
+    
+    
