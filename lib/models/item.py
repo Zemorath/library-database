@@ -165,3 +165,16 @@ class Item:
             cls.all[item.id] = item
         return item
     
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM items
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
+
+    
+    
