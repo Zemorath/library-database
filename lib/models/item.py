@@ -147,4 +147,21 @@ class Item:
         del type(self).all[self.id]
 
         self.id = None
+
+    @classmethod
+    def instance_from_db(cls, row):
+        item = cls.all.get(row[0])
+        if item:
+            item.name = row[1]
+            item.health = row[2]
+            item.defense = row[3]
+            item.attack = row[4]
+            item.crit_dmg = row[5]
+            item.crit_chance = row[6]
+            item.speed = row[7]
+        else:
+            item = cls(row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+            item.id = row[0]
+            cls.all[item.id] = item
+        return item
     
