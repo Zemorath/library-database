@@ -71,3 +71,24 @@ class Player:
         player = cls(name, player_class)
         player.save()
         return player
+    
+    def update(self):
+        sql = """
+            UPDATE players
+            SET name = ?, player_class = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.player_class, self.id))
+        CONN.commit()
+    
+    def delete(self):
+        sql = """
+            DELETE FROM players
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+
+        self.id = None
