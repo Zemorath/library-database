@@ -109,4 +109,15 @@ class Item:
         """
         CURSOR.execute(sql)
         CONN.commit()
+
+    def save(self):
+        sql = """
+            INSERT INTO items (name, health, defense, attack, crit_dmg, crit_chance, speed)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """
+        CURSOR.execute(sql, (self.name, self.health, self.defense, self.attack, self.crit_dmg, self.crit_chance, self.speed))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
     
