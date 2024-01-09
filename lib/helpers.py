@@ -127,3 +127,12 @@ def update_player():
             print("Error updating player: ", exc)
     else:
         print(f'Player {id_} not found')
+
+def delete_player():
+    id_ = input("Enter the player's ID: ")
+    if player := Player.find_by_id(id_):
+        player.delete()
+        print(f'Player {id_} deleted')
+    else:
+        print(f'Player {id_} not found')
+
