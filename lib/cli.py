@@ -20,6 +20,9 @@ from helpers import (
     update_relation,
     delete_relation
 )
+from models.item import Item
+from models.player import Player
+from models.player_items import Player_Items
 
 
 def main():
@@ -62,6 +65,18 @@ def main():
             update_relation()
         elif choice == "17":
             delete_relation()
+        elif choice == "18":
+            Item.create_table()
+        elif choice == "19":
+            Item.drop_table()
+        elif choice == "20":
+            Player.create_table()
+        elif choice == "21":
+            Player.drop_table()
+        elif choice == "22":
+            Player_Items.create_table()
+        elif choice == "23":
+            Player_Items.drop_table()
         else:
             print("Invalid choice")
 
@@ -86,6 +101,12 @@ def menu():
     print("15. Create new Player-Item relationship")
     print("16. Update existing Player-Item relationship")
     print("17. Delete existing Player-Item relationship")
+    print("18. Create new Item table")
+    print("19. Drop existing Item table")
+    print("20. Create new Player table")
+    print("21. Drop existing Player table")
+    print("22. Create new Player-Item association table")
+    print("23. Drop existing Player-Item association table")
 
 
 if __name__ == "__main__":
