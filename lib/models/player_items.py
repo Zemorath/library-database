@@ -11,7 +11,6 @@ class Player_Items:
         self.id = id
         self.player_id = player_id
         self.item_id = item_id
-        Player_Items.all.append(self)
 
     @property
     def player_id(self):

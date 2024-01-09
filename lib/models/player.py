@@ -8,7 +8,6 @@ class Player:
         self.id = id
         self.name = name
         self.player_class = player_class
-        Player.all.append(self)
 
     @property
     def name(self):

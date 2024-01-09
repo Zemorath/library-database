@@ -2,7 +2,7 @@ from models.__init__ import CURSOR, CONN
 
 class Item:
 
-    all = []
+    all = {}
 
     def __init__(self, name, health, defense, attack, crit_dmg, crit_chance, speed, id = None):
         self.id = id
@@ -13,7 +13,7 @@ class Item:
         self._crit_dmg = crit_dmg
         self._crit_chance = crit_chance
         self._speed = speed
-        Item.all.append(self)
+    
 
     @property
     def name(self):
