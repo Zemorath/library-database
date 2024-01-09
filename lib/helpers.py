@@ -136,3 +136,15 @@ def delete_player():
     else:
         print(f'Player {id_} not found')
 
+# Player_Items model helper methods
+        
+def list_player_items():
+    player_items = Player_Items.get_all()
+    for pi in player_items:
+        print(pi)
+
+def find_pi_by_id():
+    id_ = input("Enter the Player_Items' ID: ")
+    pi = Player_Items.find_by_id(id_)
+    print(pi) if pi else print(f'Player Items {id_} not found')
+
