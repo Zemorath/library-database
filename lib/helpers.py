@@ -171,3 +171,11 @@ def update_relation():
             print(f'Error updating relation: ', exc)
     else:
         print(f'Relation {id_} not found')
+
+def delete_relation():
+    id_ = input("Enter the relation ID: ")
+    if relation := Player_Items.find_by_id(id_):
+        relation.delete()
+        print(f'Relation {id_} delted')
+    else:
+        print(f'Relation {id_} not found')
