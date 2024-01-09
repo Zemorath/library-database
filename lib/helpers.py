@@ -52,22 +52,25 @@ def update_item():
             item.name = name
 
             health = input("Enter the item's new health: ")
-            item.health = health
+            item.health = int(health)
 
             defense = input("Enter the item's new defense: ")
-            item.defense = defense
+            item.defense = int(defense)
 
             attack = input("Enter the item's new attack: ")
-            item.attack = attack
+            item.attack = int(attack)
 
             crit_dmg = input("Enter the item's new crit_dmg: ")
-            item.crit_dmg = crit_dmg
+            item.crit_dmg = int(crit_dmg)
 
             crit_chance = input("Enter the item's new crit_chance: ")
-            item.crit_chance = crit_chance
+            item.crit_chance = int(crit_chance)
 
             speed = input("Enter the item's new speed: ")
-            item.speed = speed
+            item.speed = int(speed)
+            
+            item.update()
+            print(f'Success: {item}')
         except Exception as exc:
             print("Error updating item: ", exc)
     else:
@@ -108,3 +111,19 @@ def create_player():
         print(f'Success: {player}')
     except Exception as exc:
         print("Error creating Player: ", exc)
+
+def update_player():
+    id_ = input("Enter the player's ID: ")
+    if player := Player.find_by_id(id_):
+        try:
+            name = input("Enter the player's new name: ")
+            player.name = name
+            class_ = input("Enter the player's new class: ")
+            player.player_class = class_
+
+            player.update()
+            print(f'Success: {player}')
+        except Exception as exc:
+            print("Error updating player: ", exc)
+    else:
+        print(f'Player {id_} not found')
