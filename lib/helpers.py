@@ -39,7 +39,7 @@ def create_item():
     crit_chance = input("Enter the item's crit chance: ")
     speed = input("Enter the item's speed: ")
     try:
-        item = Item.create(name, health, defense, attack, crit_dmg, crit_chance, speed)
+        item = Item.create(name, int(health), int(defense), int(attack), int(crit_dmg), int(crit_chance), int(speed))
         print(f'Success: {item}')
     except Exception as exc:
         print("Error creating item: ", exc)
@@ -94,3 +94,17 @@ def find_player_by_name():
     print(player if player else print(
         f'Player {name} not found'
     ))
+
+def find_player_by_id():
+    id_ = input("Enter the Player's ID: ")
+    player = Player.find_by_id(id_)
+    print(player) if player else print(f'Player {id_} not found')
+
+def create_player():
+    name = input("Enter the player's name: ")
+    class_ = input("Enter the player's class: ")
+    try:
+        player = Player.create(name, class_)
+        print(f'Success: {player}')
+    except Exception as exc:
+        print("Error creating Player: ", exc)
