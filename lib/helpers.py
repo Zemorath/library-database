@@ -148,3 +148,26 @@ def find_pi_by_id():
     pi = Player_Items.find_by_id(id_)
     print(pi) if pi else print(f'Player Items {id_} not found')
 
+def create_relationship():
+    player_id = input("Enter the player's ID: ")
+    item_id = input("Enter the item's ID: ")
+    try:
+        relation = Player_Items.create(int(player_id), int(item_id))
+        print(f'Success: {relation}')
+    except Exception as exc:
+        print("Error creating relation: ", exc)
+
+def update_relation():
+    id_ = input("Enter the relation ID: ")
+    if relation := Player_Items.find_by_id(id_):
+        try:
+            player_id = input("Enter the new player ID: ")
+            relation.player_id = player_id
+            item_id = input("Enter the new item ID: ")
+            relation.item_id = item_id
+
+            relation.update()
+        except Exception as exc:
+            print(f'Error updating relation: ', exc)
+    else:
+        print(f'Relation {id_} not found')
