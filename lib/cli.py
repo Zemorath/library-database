@@ -69,7 +69,23 @@ def main():
 def menu():
     print("Please select an option:")
     print("0. Exit the program")
-    print("1. Some useful function")
+    print("1. List all items")
+    print("2. Find item by name")
+    print("3. Find item by id")
+    print("4. Create new item")
+    print("5. Update existing item")
+    print("6. Delete existing item")
+    print("7. List all players")
+    print("8. Find player by name")
+    print("9. Find player by id")
+    print("10. Create new player")
+    print("11. Update existing player")
+    print("12. Delete existing player")
+    print("13. List all Player-Item Relationships")
+    print("14. Find Player-Item relationship by id")
+    print("15. Create new Player-Item relationship")
+    print("16. Update existing Player-Item relationship")
+    print("17. Delete existing Player-Item relationship")
 
 
 if __name__ == "__main__":
