@@ -43,3 +43,40 @@ def create_item():
         print(f'Success: {item}')
     except Exception as exc:
         print("Error creating item: ", exc)
+
+def update_item():
+    id_ = input("Enter the item's id: ")
+    if item := Item.find_by_id(id_):
+        try:
+            name = input("Enter the item's new name: ")
+            item.name = name
+
+            health = input("Enter the item's new health: ")
+            item.health = health
+
+            defense = input("Enter the item's new defense: ")
+            item.defense = defense
+
+            attack = input("Enter the item's new attack: ")
+            item.attack = attack
+
+            crit_dmg = input("Enter the item's new crit_dmg: ")
+            item.crit_dmg = crit_dmg
+
+            crit_chance = input("Enter the item's new crit_chance: ")
+            item.crit_chance = crit_chance
+
+            speed = input("Enter the item's new speed: ")
+            item.speed = speed
+        except Exception as exc:
+            print("Error updating item: ", exc)
+    else:
+        print(f'Item {id_} not found')
+
+def delete_item():
+    id_ = input("Enter the item's id: ")
+    if item := Item.find_by_id(id_):
+        item.delete()
+        print(f'Item {id_} deleted')
+    else:
+        print(f'Item {id_} not found')
