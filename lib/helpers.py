@@ -80,3 +80,17 @@ def delete_item():
         print(f'Item {id_} deleted')
     else:
         print(f'Item {id_} not found')
+
+# Player model helper methods
+        
+def list_players():
+    players = Player.get_all()
+    for player in players:
+        print(player)
+
+def find_player_by_name():
+    name = input("Enter the player's name: ")
+    player = Player.find_by_name(name)
+    print(player if player else print(
+        f'Player {name} not found'
+    ))

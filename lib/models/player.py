@@ -127,6 +127,16 @@ class Player:
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
     
+    @classmethod
+    def find_by_name(cls, name):
+        sql = """
+            SELECT *
+            FROM players
+            WHERE name = ?
+        """
+        row = CURSOR.execute(sql, (name,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+    
     def player_items(self):
         from models.player_items import Player_Items
         sql = """
