@@ -11,6 +11,9 @@ class Player_Items:
         self.id = id
         self.player_id = player_id
         self.item_id = item_id
+    
+    def __repr__(self):
+        return f'<Player-Items Association {self.id} - Player ID: {self.player_id}, Item ID: {self.item_id}>'
 
     @property
     def player_id(self):

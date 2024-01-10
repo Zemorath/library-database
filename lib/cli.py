@@ -77,6 +77,8 @@ def main():
             Player_Items.create_table()
         elif choice == "23":
             Player_Items.drop_table()
+        elif choice == "24":
+            Player.print_all()
         else:
             print("Invalid choice")
 
@@ -107,6 +109,7 @@ def menu():
     print("21. Drop existing Player table")
     print("22. Create new Player-Item association table")
     print("23. Drop existing Player-Item association table")
+    print("24. Print all variable in players (TEST)")
 
 
 if __name__ == "__main__":

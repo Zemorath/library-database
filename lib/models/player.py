@@ -8,6 +8,9 @@ class Player:
         self.id = id
         self.name = name
         self.player_class = player_class
+    
+    def __repr__(self):
+        return f"<Player {self.id}: {self.name}, {self.player_class}>"
 
     @property
     def name(self):
@@ -95,6 +98,7 @@ class Player:
     @classmethod
     def instance_from_db(cls, row):
         player = cls.all.get(row[0])
+        print(player)
         if player:
             player.name = row[1]
             player.player_class = row[2]
@@ -148,3 +152,7 @@ class Player:
         return [
             Player_Items.instance_from_db(row) for row in rows
         ]
+    
+    @classmethod
+    def print_all(self):
+        print(self.all)

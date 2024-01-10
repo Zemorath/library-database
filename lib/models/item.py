@@ -14,6 +14,8 @@ class Item:
         self._crit_chance = crit_chance
         self._speed = speed
     
+    def __repr__(self):
+        return f"<Item {self.id}: {self.name} - Health: {self.health}, Defense: {self.defense}, Attack: {self.attack}, Crit Damage: {self.crit_dmg}, Crit Chance: {self.crit_chance}, Speed: {self.speed}>"
 
     @property
     def name(self):
