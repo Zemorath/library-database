@@ -98,12 +98,11 @@ class Player:
     @classmethod
     def instance_from_db(cls, row):
         player = cls.all.get(row[0])
-        print(player)
         if player:
             player.name = row[1]
             player.player_class = row[2]
         else:
-            player = cls(row[1, row[2]])
+            player = cls(row[1], row[2])
             player.id = row[0]
             cls.all[player.id] = player
         return player

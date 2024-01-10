@@ -23,9 +23,12 @@ class Item:
     
     @name.setter
     def name(self, name):
-        if(type(name) == str) and (len(name) >= 3):
-            if self._name == name:
-                self.name = name
+        if isinstance(name, str) and len(name):
+            self._name = name
+        else:
+            raise ValueError(
+                "Name must be a non-empty string"
+            )
     
     @property
     def health(self):
@@ -33,9 +36,12 @@ class Item:
     
     @health.setter
     def health(self, health):
-        if (type(health) == int) and (0 < health <= 200):
-            if self._health == health:
-                self.health = health
+        if isinstance(health, int) and (0 < health <= 200):
+            self._health = health
+        else:
+            raise ValueError(
+                "Health must be 200 or below"
+            )
     
     @property
     def defense(self):
@@ -43,9 +49,12 @@ class Item:
     
     @defense.setter
     def defense(self, defense):
-        if (type(defense) == int) and (0 < defense <= 200):
-            if self._defense == defense:
-                self.defense = defense
+        if isinstance(defense, int) and (0 < defense <= 200):
+            self._defense = defense
+        else:
+            raise ValueError(
+                "defense must be 200 or below"
+            )
 
     @property
     def attack(self):
@@ -53,9 +62,12 @@ class Item:
     
     @attack.setter
     def attack(self, attack):
-        if (type(attack) == int) and (0 < attack <= 300):
-            if self._attack == attack:
-                self.attack = attack
+        if isinstance(attack, int) and (0 < attack <= 300):
+            self._attack = attack
+        else:
+            raise ValueError(
+                "attack must be 300 or below"
+            )
 
     @property
     def crit_dmg(self):
@@ -63,9 +75,12 @@ class Item:
     
     @crit_dmg.setter
     def crit_dmg(self, crit_dmg):
-        if (type(crit_dmg) == int) and (0 < crit_dmg <= 30):
-            if self._crit_dmg == crit_dmg:
-                self.crit_dmg = crit_dmg
+        if isinstance(crit_dmg, int) and (0 < crit_dmg <= 30):
+            self._crit_dmg = crit_dmg
+        else:
+            raise ValueError(
+                "crit_dmg must be 30 or below"
+            )
     
     @property
     def crit_chance(self):
@@ -73,9 +88,12 @@ class Item:
     
     @crit_chance.setter
     def crit_chance(self, crit_chance):
-        if (type(crit_chance) == int) and (0 < crit_chance <= 20):
-            if self._crit_chance == crit_chance:
-                self.crit_chance = crit_chance
+        if isinstance(crit_chance, int) and (0 < crit_chance <= 20):
+            self._crit_chance = crit_chance
+        else:
+            raise ValueError(
+                "crit_chance must be 20 or below"
+            )
     
     @property
     def speed(self):
@@ -83,9 +101,12 @@ class Item:
     
     @speed.setter
     def speed(self, speed):
-        if (type(speed) == int) and (0 < speed <= 150):
-            if self._speed == speed:
-                self.speed = speed
+        if isinstance(speed, int) and (0 < speed <= 150):
+            self._speed = speed
+        else:
+            raise ValueError(
+                "speed must be 150 or below"
+            )
 
     @classmethod
     def create_table(cls):
