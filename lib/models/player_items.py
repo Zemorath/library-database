@@ -85,11 +85,11 @@ class Player_Items:
     
     def delete(self):
         sql = """
-            DELTE FROM player_items
+            DELETE FROM player_items
             WHERE id = ?
         """
 
-        CURSOR.execute(sql, (self.id))
+        CURSOR.execute(sql, (self.id,))
         CONN.commit()
 
         del type(self).all[self.id]
@@ -115,13 +115,26 @@ class Player_Items:
         return instance
     
     @classmethod
-    def get_all(cls):
+    def get_all_items_for_player(cls, player_id):
         sql = """
             SELECT *
             FROM player_items
+            WHERE player_id = ?
         """
 
-        rows = CURSOR.execute(sql).fetchall()
+        rows = CURSOR.execute(sql, (player_id,)).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def get_all_players_for_item(cls, item_id):
+        sql = """
+            SELECT *
+            FROM player_items
+            WHERE item_id = ?
+        """
+
+        rows = CURSOR.execute(sql, (item_id,)).fetchall()
 
         return [cls.instance_from_db(row) for row in rows]
     

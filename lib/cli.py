@@ -15,6 +15,7 @@ from helpers import (
     update_player,
     delete_player,
     list_player_items,
+    list_players_for_item,
     find_pi_by_id,
     create_relationship,
     update_relation,
@@ -58,26 +59,28 @@ def main():
         elif choice == "13":
             list_player_items()
         elif choice == "14":
-            find_pi_by_id()
+            list_players_for_item()
         elif choice == "15":
-            create_relationship()
+            find_pi_by_id()
         elif choice == "16":
-            update_relation()
+            create_relationship()
         elif choice == "17":
-            delete_relation()
+            update_relation()
         elif choice == "18":
-            Item.create_table()
+            delete_relation()
         elif choice == "19":
-            Item.drop_table()
+            Item.create_table()
         elif choice == "20":
-            Player.create_table()
+            Item.drop_table()
         elif choice == "21":
-            Player.drop_table()
+            Player.create_table()
         elif choice == "22":
-            Player_Items.create_table()
+            Player.drop_table()
         elif choice == "23":
-            Player_Items.drop_table()
+            Player_Items.create_table()
         elif choice == "24":
+            Player_Items.drop_table()
+        elif choice == "25":
             Player.print_all()
         else:
             print("Invalid choice")
@@ -98,18 +101,19 @@ def menu():
     print("10. Create new player")
     print("11. Update existing player")
     print("12. Delete existing player")
-    print("13. List all Player-Item Relationships")
-    print("14. Find Player-Item relationship by id")
-    print("15. Create new Player-Item relationship")
-    print("16. Update existing Player-Item relationship")
-    print("17. Delete existing Player-Item relationship")
-    print("18. Create new Item table")
-    print("19. Drop existing Item table")
-    print("20. Create new Player table")
-    print("21. Drop existing Player table")
-    print("22. Create new Player-Item association table")
-    print("23. Drop existing Player-Item association table")
-    print("24. Print all variable in players (TEST)")
+    print("13. List all items associated with specific player")
+    print("14. List all players associated with specific item")
+    print("15. Find Player-Item relationship by id")
+    print("16. Create new Player-Item relationship")
+    print("17. Update existing Player-Item relationship")
+    print("18. Delete existing Player-Item relationship")
+    print("19. Create new Item table")
+    print("20. Drop existing Item table")
+    print("21. Create new Player table")
+    print("22. Drop existing Player table")
+    print("23. Create new Player-Item association table")
+    print("24. Drop existing Player-Item association table")
+    print("25. Print all variable in players (TEST)")
 
 
 if __name__ == "__main__":

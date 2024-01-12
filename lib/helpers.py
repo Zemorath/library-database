@@ -139,7 +139,14 @@ def delete_player():
 # Player_Items model helper methods
         
 def list_player_items():
-    player_items = Player_Items.get_all()
+    id_ = input("Enter the Player's ID: ")
+    player_items = Player_Items.get_all_items_for_player(id_)
+    for pi in player_items:
+        print(pi)
+
+def list_players_for_item():
+    id_ = input("Enter the Item's ID: ")
+    player_items = Player_Items.get_all_players_for_item(id_)
     for pi in player_items:
         print(pi)
 
