@@ -38,6 +38,12 @@ class Player:
                 "player_class must be a non-empty string"
             )
     
+    def get_dict_attr(obj, attr):
+        for obj in [obj] + obj.__class__.mro():
+            if attr in obj.__dict__:
+                return obj.__dict__[attr]
+        raise AttributeError
+    
     @classmethod
     def create_table(cls):
         sql = """

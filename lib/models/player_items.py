@@ -49,6 +49,7 @@ class Player_Items:
             player_id INTEGER,
             item_id INTEGER,
             FOREIGN KEY (player_id) REFERENCES players(id)
+            FOREIGN KEY (item_id) REFERENCES items(id)
             )"""
         CURSOR.execute(sql)
         CONN.commit()
@@ -119,6 +120,7 @@ class Player_Items:
         sql = """
             SELECT *
             FROM player_items
+            INNER JOIN players ON player_items.player_id=players.id
             WHERE player_id = ?
         """
 
