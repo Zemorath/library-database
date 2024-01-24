@@ -1,3 +1,4 @@
+from models.__init__ import CURSOR, CONN
 class Owner:
 
     all = {}
@@ -41,3 +42,22 @@ class Owner:
         else:
             raise ValueError("Favorite genre must be a non-empty string")
     
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS owners (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            age INTEGER,
+            fav_genre TEXT
+            )"""
+        
+        CURSOR.execute(sql)
+        CONN.commit()
+    
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS owners;"""
+        CURSOR.execute(sql)
+        CONN.commit()
