@@ -101,3 +101,16 @@ class Owner:
         del type(self).all[self.id]
 
         self.id = None
+
+    @classmethod
+    def isntance_from_db(cls, row):
+        owner = cls.all.get(row[0])
+        if owner:
+            owner.name = row[1]
+            owner.age = row[2]
+            owner.fav_genre = row[3]
+        else:
+            owner = cls(row[1], row[2], row[3])
+            owner.id = row[0]
+            cls.all[owner.id] = owner
+        return owner
