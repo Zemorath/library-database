@@ -61,3 +61,43 @@ class Owner:
             DROP TABLE IF EXISTS owners;"""
         CURSOR.execute(sql)
         CONN.commit()
+
+    def save(self):
+        sql = """
+            INSERT INTO owners (name, age, fav_genre)
+            VALUEs (?, ?, ?)
+        """
+
+        CURSOR.execute(sql, (self.name, self.age, self.fav_genre))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, name, age, fav_genre):
+        owner = cls(name, age, fav_genre)
+        owner.save()
+        return owner
+    
+    def update(self):
+        sql = """
+            UPDATE owners
+            SET name = ?, age = ?, fav_genre = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.age, self.fav_genre))
+        CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM owners
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.id))
+        CONN.commit()
+
+        del type(self).all[self.id]
+
+        self.id = None
