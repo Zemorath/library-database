@@ -103,7 +103,7 @@ class Owner:
         self.id = None
 
     @classmethod
-    def isntance_from_db(cls, row):
+    def instance_from_db(cls, row):
         owner = cls.all.get(row[0])
         if owner:
             owner.name = row[1]
@@ -114,3 +114,15 @@ class Owner:
             owner.id = row[0]
             cls.all[owner.id] = owner
         return owner
+
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM owners
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+        
+        return [cls.instance_from_db(row) for row in rows]
+    
