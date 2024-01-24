@@ -64,8 +64,17 @@ class Player_Items:
 
     def save(self):
         sql = """
-            INSERT INTO player_items (player_id, item_id)
+            INSERT INTO player_items (player_id, item_id, player_name, player_class, item_name)
             VALUES (?, ?)
+            SELECT 
+                players.name, 
+                players.player_class, 
+                items.name
+            FROM players
+            JOIN player_items
+                ON players.id = player_items.player_id
+            JOIN items
+                ON items.id = player_items.item_id
         """
 
         CURSOR.execute(sql, (self.player_id, self.item_id))
@@ -120,7 +129,6 @@ class Player_Items:
         sql = """
             SELECT *
             FROM player_items
-            INNER JOIN players ON player_items.player_id=players.id
             WHERE player_id = ?
         """
 
