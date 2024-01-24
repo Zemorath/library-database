@@ -30,4 +30,14 @@ class Owner:
         else:
             raise ValueError("Age must be an integer and greater than or equal to 3")
     
+    @property
+    def fav_genre(self):
+        return self._fav_genre
+    
+    @fav_genre.setter
+    def fav_genre(self, fav_genre):
+        if isinstance(fav_genre, str) and len(fav_genre):
+            self._fav_genre = fav_genre
+        else:
+            raise ValueError("Favorite genre must be a non-empty string")
     
