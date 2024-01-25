@@ -55,3 +55,26 @@ class Book:
             self._owner_id = owner_id
         else:
             raise ValueError("owner_id must reference an owner in the database")
+        
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS books (
+            id INTEGER PRIMARY KEY,
+            title TEXT,
+            author TEXT,
+            isbn INTEGER,
+            owner_id INTEGER,
+            FOREIGN KEY (owner_id) REFERENCES owners(id)
+        )"""
+
+        CURSOR.execute(sql)
+        CONN.commit()
+    
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS books
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
