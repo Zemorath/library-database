@@ -113,3 +113,23 @@ class Book:
         del type(self).all[self.id]
 
         self.id = None
+
+    @classmethod
+    def create(cls, title, author, isbn, owner_id):
+        book = cls(title, author, isbn, owner_id)
+        book.save()
+        return book
+    
+    @classmethod
+    def instance_from_db(cls, row):
+        book = cls.all.get(row[0])
+        if book:
+            book.title = row[1]
+            book.author = row[2]
+            book.isbn = row[3]
+            book.owner_id = row[4]
+        else:
+            book = cls(row[1], row[2], row[3], row[4])
+            book.id = row[0]
+            cls.all[book.id] = book
+        return book
