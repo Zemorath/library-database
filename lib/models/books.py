@@ -165,3 +165,26 @@ class Book:
 
         row = CURSOR.execute(sql, (title,)).fetchone()
         return cls.instance_from_db(row) if row else None
+    
+    @classmethod
+    def find_by_author(cls, author):
+        sql = """
+            SELECT *
+            FROM books
+            WHERE author is ?
+        """
+
+        row = CURSOR.execute(sql, (author,)).fetchall()
+        return cls.instance_from_db(row) if row else None
+    
+    @classmethod
+    def find_by_isbn(cls, isbn):
+        sql = """
+            SELECT *
+            FROM books
+            WHERE isbn is ?
+        """
+
+        row = CURSOR.execute(sql, (isbn,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+    
