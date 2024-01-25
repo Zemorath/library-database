@@ -78,3 +78,15 @@ class Book:
         """
         CURSOR.execute(sql)
         CONN.commit()
+    
+    def save(self):
+        sql = """
+            INSERT INTO books (title, author, isbn, owner_id)
+            VALUES (?, ?, ?, ?)
+        """
+
+        CURSOR.execute(sql, (self.title, self.author, self.isbn, self.owner_id))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
