@@ -154,3 +154,14 @@ class Book:
 
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
+
+    @classmethod
+    def find_by_title(cls, title):
+        sql = """
+            SELECT *
+            FROM books
+            WHERE title is ?
+        """
+
+        row = CURSOR.execute(sql, (title,)).fetchone()
+        return cls.instance_from_db(row) if row else None
