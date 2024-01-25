@@ -5,11 +5,12 @@ class Book:
 
     all = {}
 
-    def __init__(self, title, author, isbn, id=None):
+    def __init__(self, title, author, isbn, owner_id, id=None):
         self.id = id
         self.title = title
         self.author = author
         self.isbn = isbn
+        self.owner_id = owner_id
 
     @property
     def title(self):
@@ -43,3 +44,14 @@ class Book:
             self._isbn = isbn
         else:
             raise ValueError("ISBN must be an integer and 10 or 13 characters long")
+    
+    @property
+    def owner_id(self):
+        return self._owner_id
+    
+    @owner_id.setter
+    def owner_id(self, owner_id):
+        if type(owner_id) is int and Owner.find_by_id(owner_id):
+            self._owner_id = owner_id
+        else:
+            raise ValueError("owner_id must reference an owner in the database")
