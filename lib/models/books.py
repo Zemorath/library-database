@@ -90,3 +90,26 @@ class Book:
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
+    
+    def update(self):
+        sql = """
+            UPDATE books
+            SET title = ?, author = ?, isbn = ?, owner_id = ?
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.title, self.author, self.isbn, self.owner_id))
+        CONN.commit()
+    
+    def delete(self):
+        sql = """
+            DELETE FROM books
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+
+        self.id = None
