@@ -44,3 +44,23 @@ def create_book():
         print(f'Succes: {book}')
     except Exception as exc:
         print("Error creating book: ", exc)
+
+def update_book():
+    title = input("Enter the book's title: ")
+    if book := Book.find_by_title(title):
+        try:
+            title = input("Enter the new title: ")
+            book.title = title
+
+            author = input("Enter the new author: ")
+            book.author = author
+
+            isbn = input("Enter the new ISBN: ")
+            book.isbn = isbn
+
+            book.update()
+            print(f'Success: {book}')
+        except Exception as exc:
+            print("Error updating book: ", exc)
+    else:
+        print(f'Book {title} not found')
