@@ -80,3 +80,18 @@ def list_owners():
     owners = Owner.get_all()
     for owner in owners:
         print(owner)
+
+def find_owner_by_name():
+    name = input("Enter the owner's name: ")
+    owner = Owner.find_by_name(name)
+    print(owner) if owner else print(f'Owner {name} not found')
+
+def create_owner():
+    name = input("Enter the owner's name: ")
+    age = input("Enter the owner's age: ")
+    fav_genre = input("Enter the owner's favorite genre: ")
+    try:
+        owner = Owner.create(name, int(age), fav_genre)
+        print(f"Success: {owner}")
+    except Exception as exc:
+        print("Error create Owner: ", exc)
