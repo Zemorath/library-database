@@ -24,12 +24,23 @@ def find_book_by_author():
     author = input("Enter the book's author: ")
     book = Book.find_by_author(author)
     print(book if book else print(
-        f'Book {author} not found'
+        f'Author {author} not found'
     ))
 
 def find_book_by_isbn():
     isbn = input("Enter the book's isbn: ")
     book = Book.find_by_isbn(isbn)
     print(book if book else print(
-        f'Book {isbn} not found'
+        f'ISBN {isbn} not found'
     ))
+
+def create_book():
+    title = input("Enter the book's title: ")
+    author = input("Enter the book's author: ")
+    isbn = input("Enter the book's ISBN: ")
+    owner_id = input("Enter the owner's ID: ")
+    try:
+        book = Book.create(title, author, int(isbn), int(owner_id))
+        print(f'Succes: {book}')
+    except Exception as exc:
+        print("Error creating book: ", exc)
