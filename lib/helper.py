@@ -115,3 +115,11 @@ def update_owner():
             print("Error updating owner: ", exc)
     else:
         print(f"Owner {name} not found")
+
+def delete_owner():
+    name = input("Enter the owner's name: ")
+    if owner := Owner.find_by_name(name):
+        owner.delete()
+        print(f'Owner {name} has been deleted')
+    else:
+        print(f'Owner {name} not found')
