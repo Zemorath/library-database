@@ -95,3 +95,23 @@ def create_owner():
         print(f"Success: {owner}")
     except Exception as exc:
         print("Error create Owner: ", exc)
+
+def update_owner():
+    name = input("Enter the owner's name: ")
+    if owner := Owner.find_by_name(name):
+        try:
+            name = input("Enter the new name: ")
+            owner.name = name
+
+            age = input("Enter the owner's age: ")
+            owner.age = age
+
+            fav_genre = input("Enter the owner's favorite genre: ")
+            owner.fav_genre = fav_genre
+
+            owner.update()
+            print(f'Success: {owner}')
+        except Exception as exc:
+            print("Error updating owner: ", exc)
+    else:
+        print(f"Owner {name} not found")
