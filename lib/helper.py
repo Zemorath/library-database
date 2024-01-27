@@ -64,3 +64,19 @@ def update_book():
             print("Error updating book: ", exc)
     else:
         print(f'Book {title} not found')
+
+def delete_book():
+    title = input("Enter the book's title: ")
+    if book := Book.find_by_title(title):
+        book.delete()
+        print(f'Book {title} deleted')
+    else:
+        print(f'Book {title} not found')
+
+
+# Owner model helper methods
+    
+def list_owners():
+    owners = Owner.get_all()
+    for owner in owners:
+        print(owner)
