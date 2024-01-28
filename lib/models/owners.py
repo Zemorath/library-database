@@ -147,5 +147,27 @@ class Owner:
 
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
+    
+    @classmethod
+    def get_all_by_age(cls, age):
+        sql = """
+            SELECT *
+            FROM owners
+            WHERE age = ?
+        """
+
+        rows = CURSOR.execute(sql, (age,)).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def get_all_by_fav_genre(cls, fav_genre):
+        sql = """
+            SELECT *
+            FROM owners
+            WHERE fav_genre = ?
+        """
+
+        rows = CURSOR.execute(sql, (fav_genre,)).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
 
     

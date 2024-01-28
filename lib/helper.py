@@ -86,6 +86,18 @@ def find_owner_by_name():
     owner = Owner.find_by_name(name)
     print(owner) if owner else print(f'Owner {name} not found')
 
+def list_owners_by_age():
+    age = input("Enter the age to filter by: ")
+    owners = Owner.get_all_by_age(age)
+    for owner in owners:
+        print(owner)
+
+def list_owners_by_fav_genre():
+    fav_genre = input("Enter the genre to filter by: ")
+    owners = Owner.get_all_by_fav_genre(fav_genre)
+    for owner in owners:
+        print(owner)
+
 def create_owner():
     name = input("Enter the owner's name: ")
     age = input("Enter the owner's age: ")

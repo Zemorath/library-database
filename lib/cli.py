@@ -124,6 +124,8 @@ from helper import (
         update_book,
         delete_book,
         list_owners,
+        list_owners_by_age,
+        list_owners_by_fav_genre,
         find_owner_by_name,
         create_owner,
         update_owner,
@@ -134,11 +136,12 @@ from models.books import Book
 
 def main():
     first_choice = 0
-    while first_choice != 3:
+    while first_choice != "x":
         print("-Online Library-")
         print("1: Interact with books")
         print("2: Interact with owners")
-        print("3: Quit")
+        print("3: Settings")
+        print("X: Quit")
         first_choice = int(input())
 
         if first_choice == 1:
@@ -155,20 +158,19 @@ def main():
                 
                 if second_choice == 1:
                     third_choice = 0
-                    while third_choice != 4:
+                    while third_choice != 3:
                         print("---List Books---")
                         print("1: All Books")
-                        print("2: By Age")
-                        print("3: By Genre")
-                        print("4: Quit")
+                        print("2: By Author")
+                        print("3: Quit")
                         third_choice = int(input())
 
                         if third_choice == 1:
                             list_books()
-                        # elif choice == 2:
-                        #     fill in method
-                        # elif choice == 3:
-                        #     fill in method
+                        elif third_choice == 2:
+                            find_book_by_author()
+                        elif third_choice == 3:
+                            print("Exiting Program")
                 elif second_choice == 2:
                     third_choice = 0
                     while third_choice != 4:
@@ -198,6 +200,64 @@ def main():
                     delete_book()
                 elif second_choice == 6:
                     print("Exiting Program")
+        if first_choice == 2:
+            second_choice = 0
+            while second_choice != 6:
+                print("--Owners--")
+                print("1: List Owners")
+                print("2: Find a specific owner")
+                print("3: Add a new owner")
+                print("4: Update an existing owner")
+                print("5: Delete a owner")
+                print("6: Quit")
+                second_choice = int(input())
+                
+                if second_choice == 1:
+                    third_choice = 0
+                    while third_choice != 4:
+                        print("---List Owners---")
+                        print("1: All Owners")
+                        print("2: By Age")
+                        print("3: By Favorite Genre")
+                        print("4: Quit")
+                        third_choice = int(input())
+
+                        if third_choice == 1:
+                            list_owners()
+                        elif third_choice == 2:
+                            list_owners_by_age()
+                        elif third_choice == 3:
+                            list_owners_by_fav_genre
+                elif second_choice == 2:
+                    print("---Finding Owner by Name---")
+                    find_owner_by_name()
+                elif second_choice == 3:
+                    print("---Creating New owner---")
+                    create_owner()
+                elif second_choice == 4:
+                    print("---Updating Existing owner---")
+                    update_owner()
+                elif second_choice == 5:
+                    print("---Deleting owner---")
+                    delete_owner()
+                elif second_choice == 6:
+                    print("Exiting Program")
+        if first_choice == 3:
+            second_choice = 0
+            while second_choice != 3:
+                print("--Settings--")
+                print("1: Modify Book Table")
+                print("2: Modify Owner Table")
+                print("3: Quit")
+                second_choice = int(input())
+
+                if second_choice == 1:
+                    third_choice = 0
+                    while third_choice != "x":
+                        print("---Modifying Book Table---")
+                        print("1: Add Table")
+                        print("2: Drop Table")
+                        third_choice = int(input())
 
 if __name__ == "__main__":
     main()
