@@ -141,7 +141,7 @@ def main():
         print("1: Interact with books")
         print("2: Interact with owners")
         print("3: Settings")
-        print("X: Quit")
+        print("4: Quit")
         first_choice = int(input())
 
         if first_choice == 1:
@@ -153,7 +153,7 @@ def main():
                 print("3: Add a new book")
                 print("4: Update an existing book")
                 print("5: Delete a book")
-                print("6: Quit")
+                print("6: Back")
                 second_choice = int(input())
                 
                 if second_choice == 1:
@@ -162,7 +162,7 @@ def main():
                         print("---List Books---")
                         print("1: All Books")
                         print("2: By Author")
-                        print("3: Quit")
+                        print("3: Back")
                         third_choice = int(input())
 
                         if third_choice == 1:
@@ -171,6 +171,7 @@ def main():
                             find_book_by_author()
                         elif third_choice == 3:
                             print("Exiting Program")
+                    second_choice = 0
                 elif second_choice == 2:
                     third_choice = 0
                     while third_choice != 4:
@@ -178,7 +179,7 @@ def main():
                         print("1: By Title")
                         print("2: By Author")
                         print("3: By ISBN")
-                        print("4: Quit")
+                        print("4: Back")
                         third_choice = int(input())
 
                         if third_choice == 1:
@@ -189,6 +190,7 @@ def main():
                             find_book_by_isbn()
                         elif third_choice == 4:
                             print("Exiting Program")
+                    second_choice = 0
                 elif second_choice == 3:
                     print("---Creating New Book---")
                     create_book()
@@ -200,6 +202,8 @@ def main():
                     delete_book()
                 elif second_choice == 6:
                     print("Exiting Program")
+                second_choice = 0
+            first_choice = 0
         if first_choice == 2:
             second_choice = 0
             while second_choice != 6:
@@ -209,7 +213,7 @@ def main():
                 print("3: Add a new owner")
                 print("4: Update an existing owner")
                 print("5: Delete a owner")
-                print("6: Quit")
+                print("6: Back")
                 second_choice = int(input())
                 
                 if second_choice == 1:
@@ -219,15 +223,21 @@ def main():
                         print("1: All Owners")
                         print("2: By Age")
                         print("3: By Favorite Genre")
-                        print("4: Quit")
+                        print("4: Back")
                         third_choice = int(input())
 
                         if third_choice == 1:
+                            print("Listing all owners")
                             list_owners()
                         elif third_choice == 2:
+                            print("Listing owners by age")
                             list_owners_by_age()
                         elif third_choice == 3:
-                            list_owners_by_fav_genre
+                            print("Listing owners by favorite genre")
+                            list_owners_by_fav_genre()
+                        elif third_choice == 4:
+                            print("Moving Back")
+                    second_choice = 0
                 elif second_choice == 2:
                     print("---Finding Owner by Name---")
                     find_owner_by_name()
@@ -242,13 +252,15 @@ def main():
                     delete_owner()
                 elif second_choice == 6:
                     print("Exiting Program")
+                second_choice = 0
+            first_choice = 0
         if first_choice == 3:
             second_choice = 0
             while second_choice != 3:
                 print("--Settings--")
                 print("1: Modify Book Table")
                 print("2: Modify Owner Table")
-                print("3: Quit")
+                print("3: Back")
                 second_choice = int(input())
 
                 if second_choice == 1:
@@ -257,7 +269,7 @@ def main():
                         print("---Modifying Book Table---")
                         print("1: Add Table")
                         print("2: Drop Table")
-                        print("3: Quit")
+                        print("3: Back")
                         third_choice = int(input())
 
                         if third_choice == 1:
@@ -268,23 +280,28 @@ def main():
                             Book.drop_table()
                         elif third_choice == 3:
                             print("Exiting Program")
+                    second_choice = 0
                 if second_choice == 2:
-                    third_choice = 0
-                    while third_choice != 3:
+                    owner_table_choice = 0
+                    while owner_table_choice != 3:
                         print("---Modifying Owner Table---")
                         print("1: Add Table")
                         print("2: Drop Table")
-                        print("3: Quit")
+                        print("3: Back")
+                        owner_table_choice = int(input())
 
-                        if third_choice == 1:
+                        if owner_table_choice == 1:
                             print("Creating Owner Table")
                             Owner.create_table()
-                        elif third_choice == 2:
+                        elif owner_table_choice == 2:
                             print("Dropping Owner Table")
                             Owner.drop_table()
-                        elif third_choice == 3:
+                        elif owner_table_choice == 3:
                             print("Exiting Program")
+                    second_choice = 0
                 if second_choice == 3:
                     print("Exiting Program")
+            first_choice = 0
+
 if __name__ == "__main__":
     main()
