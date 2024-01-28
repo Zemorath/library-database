@@ -170,7 +170,7 @@ def main():
                         elif third_choice == 2:
                             find_book_by_author()
                         elif third_choice == 3:
-                            print("Exiting Program")
+                            print("Moving Back!")
                     second_choice = 0
                 elif second_choice == 2:
                     third_choice = 0
@@ -189,7 +189,7 @@ def main():
                         elif third_choice == 3:
                             find_book_by_isbn()
                         elif third_choice == 4:
-                            print("Exiting Program")
+                            print("Moving Back!")
                     second_choice = 0
                 elif second_choice == 3:
                     print("---Creating New Book---")
@@ -201,7 +201,7 @@ def main():
                     print("---Deleting Book---")
                     delete_book()
                 elif second_choice == 6:
-                    print("Exiting Program")
+                    print("Moving Back!")
             first_choice = 0
         if first_choice == 2:
             second_choice = 0
@@ -250,8 +250,7 @@ def main():
                     print("---Deleting owner---")
                     delete_owner()
                 elif second_choice == 6:
-                    print("Exiting Program")
-                second_choice = 0
+                    print("Moving Back!")
             first_choice = 0
         if first_choice == 3:
             second_choice = 0
@@ -278,7 +277,7 @@ def main():
                             print("Dropping Book Table")
                             Book.drop_table()
                         elif third_choice == 3:
-                            print("Exiting Program")
+                            print("Moving Back!")
                     second_choice = 0
                 if second_choice == 2:
                     owner_table_choice = 0
@@ -296,11 +295,14 @@ def main():
                             print("Dropping Owner Table")
                             Owner.drop_table()
                         elif owner_table_choice == 3:
-                            print("Exiting Program")
+                            print("Moving Back!")
                     second_choice = 0
                 if second_choice == 3:
-                    print("Exiting Program")
+                    print("Moving Back!")
             first_choice = 0
+        if first_choice == 4:
+            print("Exiting Program!")
+            exit()
 
 if __name__ == "__main__":
     main()

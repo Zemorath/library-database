@@ -12,6 +12,9 @@ class Book:
         self.isbn = isbn
         self.owner_id = owner_id
 
+    def __repr__(self):
+        return f"Title: {self.title} || Author: {self.author} || ISBN: {self.isbn} || Owner: {self.owner_id}"
+
     @property
     def title(self):
         return self._title
@@ -98,7 +101,7 @@ class Book:
             WHERE id = ?
         """
 
-        CURSOR.execute(sql, (self.title, self.author, self.isbn, self.owner_id))
+        CURSOR.execute(sql, (self.title, self.author, self.isbn, self.owner_id, self.id))
         CONN.commit()
     
     def delete(self):
@@ -174,8 +177,8 @@ class Book:
             WHERE author is ?
         """
 
-        row = CURSOR.execute(sql, (author,)).fetchall()
-        return cls.instance_from_db(row) if row else None
+        rows = CURSOR.execute(sql, (author,)).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
     
     @classmethod
     def find_by_isbn(cls, isbn):

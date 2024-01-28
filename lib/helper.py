@@ -56,7 +56,10 @@ def update_book():
             book.author = author
 
             isbn = input("Enter the new ISBN: ")
-            book.isbn = isbn
+            book.isbn = int(isbn)
+
+            owner_id = input("Enter the new owner's ID: ")
+            book.owner_id = int(owner_id)
 
             book.update()
             print(f'Success: {book}')
@@ -116,10 +119,13 @@ def update_owner():
             owner.name = name
 
             age = input("Enter the owner's age: ")
-            owner.age = age
+            owner.age = int(age)
 
             fav_genre = input("Enter the owner's favorite genre: ")
             owner.fav_genre = fav_genre
+
+            owner_id = input("Enter the owner's ID: ")
+            owner.owner_id = int(owner_id)
 
             owner.update()
             print(f'Success: {owner}')

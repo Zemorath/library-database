@@ -89,7 +89,7 @@ class Owner:
             SET name = ?, age = ?, fav_genre = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.age, self.fav_genre))
+        CURSOR.execute(sql, (self.name, self.age, self.fav_genre, self.id))
         CONN.commit()
 
     def delete(self):
@@ -98,10 +98,15 @@ class Owner:
             WHERE name = ?
         """
 
-        CURSOR.execute(sql, (self.name))
+        CURSOR.execute(sql, (self.name,))
         CONN.commit()
 
-        del type(self).all[self.name]
+        print(self)
+
+        # if {self.name} in all:
+        #     all.pop({self.name})
+        # else:
+        #     print("Owner not found")
 
         self.id = None
 
