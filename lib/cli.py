@@ -133,25 +133,71 @@ from models.owners import Owner
 from models.books import Book
 
 def main():
-    choice = 0
-    print("----Online Library----")
-    print("1: Interact with books")
-    print("2: Interact with owners")
+    first_choice = 0
+    while first_choice != 3:
+        print("-Online Library-")
+        print("1: Interact with books")
+        print("2: Interact with owners")
+        print("3: Quit")
+        first_choice = int(input())
 
-    if choice == 1:
-        choice = 0
-        print("----Books----")
-        print("1: List books")
-        print("2: Find a specific book")
-        print("3: Add a new book")
-        print("4: Update an existing book")
-        print("5: Delete a book")
-        
-        if choice == 1:
-            print("----List Books----")
-            print("1: All Books")
-            print("2: By Age")
-            print("3: By Genre")
+        if first_choice == 1:
+            second_choice = 0
+            while second_choice != 6:
+                print("--Books--")
+                print("1: List books")
+                print("2: Find a specific book")
+                print("3: Add a new book")
+                print("4: Update an existing book")
+                print("5: Delete a book")
+                print("6: Quit")
+                second_choice = int(input())
+                
+                if second_choice == 1:
+                    third_choice = 0
+                    while third_choice != 4:
+                        print("---List Books---")
+                        print("1: All Books")
+                        print("2: By Age")
+                        print("3: By Genre")
+                        print("4: Quit")
+                        third_choice = int(input())
+
+                        if third_choice == 1:
+                            list_books()
+                        # elif choice == 2:
+                        #     fill in method
+                        # elif choice == 3:
+                        #     fill in method
+                elif second_choice == 2:
+                    third_choice = 0
+                    while third_choice != 4:
+                        print("---Find a Book---")
+                        print("1: By Title")
+                        print("2: By Author")
+                        print("3: By ISBN")
+                        print("4: Quit")
+                        third_choice = int(input())
+
+                        if third_choice == 1:
+                            find_book_by_title()
+                        elif third_choice == 2:
+                            find_book_by_author()
+                        elif third_choice == 3:
+                            find_book_by_isbn()
+                        elif third_choice == 4:
+                            print("Exiting Program")
+                elif second_choice == 3:
+                    print("---Creating New Book---")
+                    create_book()
+                elif second_choice == 4:
+                    print("---Updating Existing Book---")
+                    update_book()
+                elif second_choice == 5:
+                    print("---Deleting Book---")
+                    delete_book()
+                elif second_choice == 6:
+                    print("Exiting Program")
 
 if __name__ == "__main__":
     main()
