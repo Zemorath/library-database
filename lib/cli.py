@@ -202,7 +202,6 @@ def main():
                     delete_book()
                 elif second_choice == 6:
                     print("Exiting Program")
-                second_choice = 0
             first_choice = 0
         if first_choice == 2:
             second_choice = 0

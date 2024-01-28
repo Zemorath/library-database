@@ -9,6 +9,9 @@ class Owner:
         self.age = age
         self.fav_genre = fav_genre
 
+    def __repr__(self):
+        return f"Name: {self.name} || Age: {self.age} || Favorite Genre: {self.fav_genre}"
+
     @property
     def name(self):
         return self._name
@@ -92,13 +95,13 @@ class Owner:
     def delete(self):
         sql = """
             DELETE FROM owners
-            WHERE id = ?
+            WHERE name = ?
         """
 
-        CURSOR.execute(sql, (self.id))
+        CURSOR.execute(sql, (self.name))
         CONN.commit()
 
-        del type(self).all[self.id]
+        del type(self).all[self.name]
 
         self.id = None
 
