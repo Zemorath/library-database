@@ -253,11 +253,38 @@ def main():
 
                 if second_choice == 1:
                     third_choice = 0
-                    while third_choice != "x":
+                    while third_choice != 3:
                         print("---Modifying Book Table---")
                         print("1: Add Table")
                         print("2: Drop Table")
+                        print("3: Quit")
                         third_choice = int(input())
 
+                        if third_choice == 1:
+                            print("Creating Book Table")
+                            Book.create_table()
+                        elif third_choice == 2:
+                            print("Dropping Book Table")
+                            Book.drop_table()
+                        elif third_choice == 3:
+                            print("Exiting Program")
+                if second_choice == 2:
+                    third_choice = 0
+                    while third_choice != 3:
+                        print("---Modifying Owner Table---")
+                        print("1: Add Table")
+                        print("2: Drop Table")
+                        print("3: Quit")
+
+                        if third_choice == 1:
+                            print("Creating Owner Table")
+                            Owner.create_table()
+                        elif third_choice == 2:
+                            print("Dropping Owner Table")
+                            Owner.drop_table()
+                        elif third_choice == 3:
+                            print("Exiting Program")
+                if second_choice == 3:
+                    print("Exiting Program")
 if __name__ == "__main__":
     main()
