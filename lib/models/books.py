@@ -191,3 +191,13 @@ class Book:
         row = CURSOR.execute(sql, (isbn,)).fetchone()
         return cls.instance_from_db(row) if row else None
     
+    @classmethod
+    def find_by_owner_id(cls, owner_id):
+        sql = """
+            SELECT *
+            FROM books
+            WHERE owner_id is ?
+        """
+
+        rows = CURSOR.execute(sql, (owner_id,)).fetchall()
+        return [cls.instance_from_db(row) for row in rows]

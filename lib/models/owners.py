@@ -133,6 +133,7 @@ class Owner:
         rows = CURSOR.execute(sql).fetchall()
         
         return [cls.instance_from_db(row) for row in rows]
+    
 
     @classmethod
     def find_by_name(cls, name):

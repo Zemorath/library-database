@@ -137,6 +137,9 @@ def update_owner():
 def delete_owner():
     name = input("Enter the owner's name: ")
     if owner := Owner.find_by_name(name):
+        books = Book.find_by_owner_id(owner.id)
+        for book in books:
+            book.delete()
         owner.delete()
         print(f'Owner {name} has been deleted')
     else:
