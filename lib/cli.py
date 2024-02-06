@@ -12,7 +12,8 @@ from helper import (
         find_owner_by_name,
         create_owner,
         update_owner,
-        delete_owner
+        delete_owner,
+        list_owners_books
     )
 from models.owners import Owner
 from models.books import Book
@@ -109,8 +110,60 @@ def main():
                         third_choice = int(input())
 
                         if third_choice == 1:
-                            print("Listing all owners")
-                            list_owners()
+                            print("Here is a list of all owners! Choose one to see more information or edit")
+                            owner_choice = 0
+                            owners = Owner.get_all()
+                            for i, owner in enumerate(owners, start=1):
+                                print(f"{i}. {owner.name}")
+                            while owner_choice != len(owners) + 1:
+                                owner_choice = int(input())
+                                if owner_choice == len(owners) + 1:
+                                    print("Moving back")
+                                else:
+                                    chosen_owner = owners[owner_choice-1]
+                                    print("OWNER")
+                                    print("---------")
+                                    print(f"{chosen_owner.name} || Age: {chosen_owner.age} || Favorite Genre: {chosen_owner.fav_genre}")
+                                    print(" ")
+                                    print("BOOKS: Select one to edit")
+                                    print("---------")
+                                    list = list_owners_books(chosen_owner.id)
+                                    print(" ")
+                                    print("Options")
+                                    print("---------")
+                                    print(f"{len(list) + 1}: Add a new book")
+                                    print(f"{len(list) + 2}: Back")
+                                    book_choice = 0
+                                    while book_choice != (len(list) + 2):
+                                        book_choice = int(input())
+                                        if book_choice == (len(list) + 2):
+                                            print("Moving Back!")
+                                        elif book_choice == (len(list) + 1):
+                                            print(f"Adding new book to {chosen_owner.name}")
+                                            create_book(chosen_owner.id)
+                                        else:
+                                            chosen_book = list[book_choice-1]
+                                            print(" ")
+                                            print("BOOK")
+                                            print("---------")
+                                            print(f"{chosen_book.title} || Author: {chosen_book.author} || ISBN: {chosen_book.isbn}")
+                                            print("---------")
+                                            print("1. Update Book")
+                                            print("2. Delete Book")
+                                            print("3. Back")
+                                            option_choice = 0
+                                            while option_choice != 3:
+                                                option_choice = int(input())
+                                                if option_choice == 1:
+                                                    print("Let's Update the Book!")
+                                                    update_book(chosen_book.id)
+                                                elif option_choice == 2:
+                                                    print("Let's delete the book!")
+                                                    delete_book(chosen_book.id, chosen_book.title)
+
+                                    
+
+
                         elif third_choice == 2:
                             print("Listing owners by age")
                             list_owners_by_age()

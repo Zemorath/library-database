@@ -34,20 +34,18 @@ def find_book_by_isbn():
         f'ISBN {isbn} not found'
     ))
 
-def create_book():
+def create_book(_id):
     title = input("Enter the book's title: ")
     author = input("Enter the book's author: ")
     isbn = input("Enter the book's ISBN: ")
-    owner_id = input("Enter the owner's ID: ")
     try:
-        book = Book.create(title, author, int(isbn), int(owner_id))
+        book = Book.create(title, author, int(isbn), int(_id))
         print(f'Succes: {book}')
     except Exception as exc:
         print("Error creating book: ", exc)
 
-def update_book():
-    title = input("Enter the book's title: ")
-    if book := Book.find_by_title(title):
+def update_book(book_id):
+    if book := Book.find_by_id(book_id):
         try:
             title = input("Enter the new title: ")
             book.title = title
@@ -58,8 +56,8 @@ def update_book():
             isbn = input("Enter the new ISBN: ")
             book.isbn = int(isbn)
 
-            owner_id = input("Enter the new owner's ID: ")
-            book.owner_id = int(owner_id)
+            # owner_id = input("Enter the new owner's ID: ")
+            # book.owner_id = int(owner_id)
 
             book.update()
             print(f'Success: {book}')
@@ -68,9 +66,8 @@ def update_book():
     else:
         print(f'Book {title} not found')
 
-def delete_book():
-    title = input("Enter the book's title: ")
-    if book := Book.find_by_title(title):
+def delete_book(_id, title):
+    if book := Book.find_by_id(_id):
         book.delete()
         print(f'Book {title} deleted')
     else:
@@ -81,8 +78,8 @@ def delete_book():
     
 def list_owners():
     owners = Owner.get_all()
-    for owner in owners:
-        print(owner)
+    for i, owner in enumerate(owners, start=1):
+        print(f"{i}. {owner.name}")
 
 def find_owner_by_name():
     name = input("Enter the owner's name: ")
@@ -107,7 +104,7 @@ def create_owner():
     fav_genre = input("Enter the owner's favorite genre: ")
     try:
         owner = Owner.create(name, int(age), fav_genre)
-        print(f"Success: {owner}")
+        print(f"Success: Name: {owner.name} || Age: {owner.age} || Favorite Genre: {owner.fav_genre}")
     except Exception as exc:
         print("Error create Owner: ", exc)
 
@@ -144,3 +141,9 @@ def delete_owner():
         print(f'Owner {name} has been deleted')
     else:
         print(f'Owner {name} not found')
+
+def list_owners_books(_id):
+    if owner := Owner.find_by_id(int(_id)):
+        for i, book in enumerate(owner.books(), start=1):
+            print(f"{i}. Title: {book.title} || Author: {book.author}")
+    return owner.books()

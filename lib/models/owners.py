@@ -179,4 +179,16 @@ class Owner:
         rows = CURSOR.execute(sql, (fav_genre,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]
 
+    def books(self):
+        from models.books import Book
+        sql = """
+            SELECT * FROM books
+            WHERE owner_id = ?
+        """
+        CURSOR.execute(sql, (self.id,),)
+
+        rows = CURSOR.fetchall()
+        return [
+            Book.instance_from_db(row) for row in rows
+        ]
     
