@@ -55,11 +55,12 @@ def main():
                         if owner_choice == len(owners) + 1:
                             print("Let's add a new owner!")
                             create_owner()
+                            owner_choice = len(owners) + 2
                         else:
                             book_choice = 0
                             chosen_owner = owners[owner_choice-1]
                             list = grab_owners_books(chosen_owner.id)
-                            while book_choice != (len(list) + 2):
+                            while book_choice != (len(list) + 4):
                                 print("OWNER")
                                 print("---------")
                                 print(f"{chosen_owner.name} || Age: {chosen_owner.age} || Favorite Genre: {chosen_owner.fav_genre}")
@@ -71,14 +72,30 @@ def main():
                                 print("Options")
                                 print("---------")
                                 print(f"{len(list) + 1}: Add a new book")
-                                print(f"{len(list) + 2}: Back")
+                                print(f"{len(list) + 2}: Update owner")
+                                print(f"{len(list) + 3}: Delete Owner")
+                                print(f"{len(list) + 4}: Back")
                                 book_choice = int(input())
-                                if book_choice == (len(list) + 2):
+                                if book_choice == (len(list) + 4):
                                     print("Moving Back!")
 
                                 elif book_choice == (len(list) + 1):
                                     print(f"Adding new book to {chosen_owner.name}")
                                     create_book(chosen_owner.id)
+                                    book_choice = len(list) + 4
+                                
+                                elif book_choice == (len(list) + 2):
+                                    print(f"Updating {chosen_owner.name}!")
+                                    update_owner(chosen_owner.id)
+                                    book_choice = len(list) + 4
+                                
+                                elif book_choice == (len(list) + 3):
+                                    print(f"Deleting {chosen_owner.name}")
+                                    delete_owner(chosen_owner.id)
+                                    second_choice = 0
+                                    owner_choice = len(owners) + 2
+                                    book_choice = len(list) + 4
+
                                 else:
                                     option_choice = 0
                                     while option_choice != 3:
