@@ -89,14 +89,12 @@ def find_owner_by_name():
 def list_owners_by_age():
     age = input("Enter the age to filter by: ")
     owners = Owner.get_all_by_age(age)
-    for owner in owners:
-        print(owner)
+    return owners
 
 def list_owners_by_fav_genre():
     fav_genre = input("Enter the genre to filter by: ")
     owners = Owner.get_all_by_fav_genre(fav_genre)
-    for owner in owners:
-        print(owner)
+    return owners
 
 def create_owner():
     name = input("Enter the owner's name: ")
@@ -147,3 +145,7 @@ def list_owners_books(_id):
         for i, book in enumerate(owner.books(), start=1):
             print(f"{i}. Title: {book.title} || Author: {book.author}")
     return owner.books()
+
+def grab_owners_books(_id):
+    if owner := Owner.find_by_id(_id):
+        return owner.books()
