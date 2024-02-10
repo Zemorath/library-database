@@ -1,15 +1,11 @@
 from helper import (
         list_books,
-        find_book_by_title,
-        find_book_by_author,
-        find_book_by_isbn,
         create_book,
         update_book,
         delete_book,
         list_owners,
         list_owners_by_age,
         list_owners_by_fav_genre,
-        find_owner_by_name,
         create_owner,
         update_owner,
         delete_owner,
@@ -41,8 +37,7 @@ def main():
                 while second_choice == 1:
                     print("Here is a list of all owners! Choose one to see more information or edit")
                     owner_choice = 0
-                    owners = Owner.get_all()
-                    print(len(owners))
+                    owners = list_owners()
                     while owner_choice != len(owners) + 2:
                         for i, owner in enumerate(owners, start=1):
                             print(f"{i}. {owner.name}")

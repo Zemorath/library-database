@@ -12,8 +12,8 @@ class Book:
         self.isbn = isbn
         self.owner_id = owner_id
 
-    def __repr__(self):
-        return f"Title: {self.title} || Author: {self.author} || ISBN: {self.isbn}"
+    # def __repr__(self):
+    #     return f"Title: {self.title} || Author: {self.author} || ISBN: {self.isbn}"
 
     @property
     def title(self):

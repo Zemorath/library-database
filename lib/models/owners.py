@@ -9,8 +9,8 @@ class Owner:
         self.age = age
         self.fav_genre = fav_genre
 
-    def __repr__(self):
-        return f"Name: {self.name} || Age: {self.age} || Favorite Genre: {self.fav_genre}"
+    # def __repr__(self):
+    #     return f"Name: {self.name} || Age: {self.age} || Favorite Genre: {self.fav_genre}"
 
     @property
     def name(self):
@@ -102,13 +102,14 @@ class Owner:
         CONN.commit()
 
         print(self)
-
+        self.id = None
+        
         # if {self.name} in all:
         #     all.pop({self.name})
         # else:
         #     print("Owner not found")
 
-        self.id = None
+        
 
     @classmethod
     def instance_from_db(cls, row):

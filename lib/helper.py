@@ -11,28 +11,7 @@ def exit_program():
 def list_books():
     books = Book.get_all()
     for book in books:
-        print(book)
-
-def find_book_by_title():
-    title = input("Enter the book's name: ")
-    book = Book.find_by_title(title)
-    print(book if book else print(
-        f'Book {title} not found'
-    ))
-
-def find_book_by_author():
-    author = input("Enter the book's author: ")
-    book = Book.find_by_author(author)
-    print(book if book else print(
-        f'Author {author} not found'
-    ))
-
-def find_book_by_isbn():
-    isbn = input("Enter the book's isbn: ")
-    book = Book.find_by_isbn(isbn)
-    print(book if book else print(
-        f'ISBN {isbn} not found'
-    ))
+        print(f"Title: {book.title} || Author: {book.author} || ISBN: {book.isbn}")
 
 def create_book(_id):
     title = input("Enter the book's title: ")
@@ -40,7 +19,7 @@ def create_book(_id):
     isbn = input("Enter the book's ISBN: ")
     try:
         book = Book.create(title, author, int(isbn), int(_id))
-        print(f'Succes: {book}')
+        print(f'Succes: {book.title} || Author: {book.author} || ISBN: {book.isbn}')
     except Exception as exc:
         print("Error creating book: ", exc)
 
@@ -56,11 +35,8 @@ def update_book(book_id):
             isbn = input("Enter the new ISBN: ")
             book.isbn = int(isbn)
 
-            # owner_id = input("Enter the new owner's ID: ")
-            # book.owner_id = int(owner_id)
-
             book.update()
-            print(f'Success: {book}')
+            print(f'Success: {book.title} || Author: {book.author} || ISBN: {book.isbn}')
         except Exception as exc:
             print("Error updating book: ", exc)
     else:
@@ -78,13 +54,7 @@ def delete_book(_id, title):
     
 def list_owners():
     owners = Owner.get_all()
-    for i, owner in enumerate(owners, start=1):
-        print(f"{i}. {owner.name}")
-
-def find_owner_by_name():
-    name = input("Enter the owner's name: ")
-    owner = Owner.find_by_name(name)
-    print(owner) if owner else print(f'Owner {name} not found')
+    return owners
 
 def list_owners_by_age():
     age = input("Enter the age to filter by: ")
@@ -119,7 +89,7 @@ def update_owner(_id):
             owner.fav_genre = fav_genre
 
             owner.update()
-            print(f'Success: {owner}')
+            print(f'Success: {owner.name} || Age: {owner.age} || Favorite Genre: {owner.fav_genre}')
         except Exception as exc:
             print("Error updating owner: ", exc)
     else:
