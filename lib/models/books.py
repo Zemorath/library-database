@@ -12,9 +12,6 @@ class Book:
         self.isbn = isbn
         self.owner_id = owner_id
 
-    # def __repr__(self):
-    #     return f"Title: {self.title} || Author: {self.author} || ISBN: {self.isbn}"
-
     @property
     def title(self):
         return self._title
@@ -43,7 +40,7 @@ class Book:
     
     @isbn.setter
     def isbn(self, isbn):
-        if isinstance(isbn, int) and (isbn > 0):
+        if isinstance(isbn, int) and (13 >= isbn > 0):
             self._isbn = isbn
         else:
             raise ValueError("ISBN must be an integer and 10 or 13 characters long")
