@@ -16,4 +16,13 @@ Here is a quick walkthrough of the CLI.
 
 ## Changes
 
-Some changes I could have made that could be implemented in the future would begin with adding more information to both the books and the owners. Another one would be filtering a list to only contain those owners that have a specific book. I.E. all those who have Red Rising by Pierce Brown. Overall, I think the flow of the CLI is good and I don't know of any changes I would make to that at this stage. 
+Some changes I could have made that could be implemented in the future would begin with adding more information to both the books and the owners such as edition, page numbers, and ratings for the books. For owners I would like to add an email address and password to represent a log in. Another one would be filtering a list to only contain those owners that have a specific book. I.E. all those who have Red Rising by Pierce Brown. Overall, I think the flow of the CLI is good and I don't know of any changes I would make to that at this stage. 
+
+
+## Features
+
+1. Settings menu to add/drop necessary tables
+2. Compact view of the owners before selecting. After selecting one owner it will show additional information
+3. Can filter by age or favorite genre
+4. Also compact view of the books that will show the ISBN once one is selected.
+5. You always know where you are in the CLI and what it is that you are editing. Minimal request for for word input, only for menu navigation.
